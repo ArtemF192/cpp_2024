@@ -1,5 +1,6 @@
 #include <iostream>
 #include <locale.h>
+#pragma execution_character_set("utf-8")
 using namespace std;
 void main(void)
 {
