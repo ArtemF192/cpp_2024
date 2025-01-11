@@ -12,21 +12,21 @@ public:
     virtual void Show(HDC hdc) {}
     virtual void Hide(HDC hdc) {}
     void Local(int& XL, int& YL) { XL = X; YL = Y; }
-    void MoveTo(int newX, int newY, HDC hdc); // Метод для перемещения
-    void ChangeColor(COLORREF newColor, HDC hdc); // Метод для смены цвета
+    void MoveTo(int newX, int newY, HDC hdc); // РњРµС‚РѕРґ РґР»СЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ
+    void ChangeColor(COLORREF newColor, HDC hdc); // РњРµС‚РѕРґ РґР»СЏ СЃРјРµРЅС‹ С†РІРµС‚Р°
 };
 
 class Krug : public Point {
 protected:
     int Radius;
-    int SectorStart, SectorEnd; // Углы начала и конца сектора
+    int SectorStart, SectorEnd; // РЈРіР»С‹ РЅР°С‡Р°Р»Р° Рё РєРѕРЅС†Р° СЃРµРєС‚РѕСЂР°
 public:
     Krug(int XN, int YN, int R, COLORREF Color)
         : Point(XN, YN, Color), Radius(R), SectorStart(0), SectorEnd(360) {
     }
     void Show(HDC hdc) override;
     void Hide(HDC hdc) override;
-    void ChangeSector(int start, int end, HDC hdc); // Метод для изменения сектора
+    void ChangeSector(int start, int end, HDC hdc); // РњРµС‚РѕРґ РґР»СЏ РёР·РјРµРЅРµРЅРёСЏ СЃРµРєС‚РѕСЂР°
 };
 
 class Ring : public Krug {
@@ -39,22 +39,22 @@ public:
 };
 
 void Point::MoveTo(int newX, int newY, HDC hdc) {
-    Hide(hdc); // Скрываем фигуру в текущей позиции
-    X = newX;  // Обновляем координаты
+    Hide(hdc); // РЎРєСЂС‹РІР°РµРј С„РёРіСѓСЂСѓ РІ С‚РµРєСѓС‰РµР№ РїРѕР·РёС†РёРё
+    X = newX;  // РћР±РЅРѕРІР»СЏРµРј РєРѕРѕСЂРґРёРЅР°С‚С‹
     Y = newY;
-    Show(hdc); // Показываем фигуру в новой позиции
+    Show(hdc); // РџРѕРєР°Р·С‹РІР°РµРј С„РёРіСѓСЂСѓ РІ РЅРѕРІРѕР№ РїРѕР·РёС†РёРё
 }
 
 void Point::ChangeColor(COLORREF newColor, HDC hdc) {
-    Hide(hdc); // Скрываем фигуру
-    Color = newColor; // Меняем цвет
-    Show(hdc); // Показываем фигуру с новым цветом
+    Hide(hdc); // РЎРєСЂС‹РІР°РµРј С„РёРіСѓСЂСѓ
+    Color = newColor; // РњРµРЅСЏРµРј С†РІРµС‚
+    Show(hdc); // РџРѕРєР°Р·С‹РІР°РµРј С„РёРіСѓСЂСѓ СЃ РЅРѕРІС‹Рј С†РІРµС‚РѕРј
 }
 
 void Krug::Show(HDC hdc) {
     HBRUSH hBrush = CreateSolidBrush(Color);
     SelectObject(hdc, hBrush);
-    // Рисуем сектор круга
+    // Р РёСЃСѓРµРј СЃРµРєС‚РѕСЂ РєСЂСѓРіР°
     Pie(hdc, X - Radius, Y - Radius, X + Radius, Y + Radius,
         static_cast<int>(X + Radius * cos(SectorStart * 3.14 / 180)),
         static_cast<int>(Y - Radius * sin(SectorStart * 3.14 / 180)),
@@ -71,14 +71,14 @@ void Krug::Hide(HDC hdc) {
 }
 
 void Krug::ChangeSector(int start, int end, HDC hdc) {
-    Hide(hdc); // Скрываем фигуру
-    SectorStart = start; // Меняем углы сектора
+    Hide(hdc); // РЎРєСЂС‹РІР°РµРј С„РёРіСѓСЂСѓ
+    SectorStart = start; // РњРµРЅСЏРµРј СѓРіР»С‹ СЃРµРєС‚РѕСЂР°
     SectorEnd = end;
-    Show(hdc); // Показываем фигуру с новым сектором
+    Show(hdc); // РџРѕРєР°Р·С‹РІР°РµРј С„РёРіСѓСЂСѓ СЃ РЅРѕРІС‹Рј СЃРµРєС‚РѕСЂРѕРј
 }
 
 void Ring::Show(HDC hdc) {
-    // Рисуем внешний круг с сектором
+    // Р РёСЃСѓРµРј РІРЅРµС€РЅРёР№ РєСЂСѓРі СЃ СЃРµРєС‚РѕСЂРѕРј
     HBRUSH hBrush = CreateSolidBrush(Color);
     SelectObject(hdc, hBrush);
     Pie(hdc, X - Radius, Y - Radius, X + Radius, Y + Radius,
@@ -88,7 +88,7 @@ void Ring::Show(HDC hdc) {
         static_cast<int>(Y - Radius * sin(SectorEnd * 3.14 / 180)));
     DeleteObject(hBrush);
 
-    // Рисуем внутренний "вырезанный" круг
+    // Р РёСЃСѓРµРј РІРЅСѓС‚СЂРµРЅРЅРёР№ "РІС‹СЂРµР·Р°РЅРЅС‹Р№" РєСЂСѓРі
     hBrush = CreateHatchBrush(HS_DIAGCROSS, GetBkColor(hdc));
     SelectObject(hdc, hBrush);
     Pie(hdc, X - (Radius - Width), Y - (Radius - Width), X + (Radius - Width), Y + (Radius - Width),
@@ -150,15 +150,15 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
         return 0;
     case WM_KEYDOWN:
         hdc = GetDC(hwnd);
-        // Перемещаем фигуры
+        // РџРµСЂРµРјРµС‰Р°РµРј С„РёРіСѓСЂС‹
         testKrug.MoveTo(rand() % 800, rand() % 600, hdc);
         testRing.MoveTo(rand() % 800, rand() % 600, hdc);
 
-        // Меняем цвет фигур
+        // РњРµРЅСЏРµРј С†РІРµС‚ С„РёРіСѓСЂ
         testKrug.ChangeColor(RGB(rand() % 256, rand() % 256, rand() % 256), hdc);
         testRing.ChangeColor(RGB(rand() % 256, rand() % 256, rand() % 256), hdc);
 
-        // Меняем сектор круга и кольца
+        // РњРµРЅСЏРµРј СЃРµРєС‚РѕСЂ РєСЂСѓРіР° Рё РєРѕР»СЊС†Р°
         testKrug.ChangeSector(rand() % 360, rand() % 360, hdc);
         testRing.ChangeSector(rand() % 360, rand() % 360, hdc);
 

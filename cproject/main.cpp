@@ -25,7 +25,7 @@ void Setup()
 
 void Draw()
 {
-    system("cls"); // Очистка экрана
+    system("cls"); 
 
     for (int i = 0; i < width + 2; i++)
         std::cout << "#";
@@ -36,12 +36,12 @@ void Draw()
         for (int j = 0; j < width; j++)
         {
             if (j == 0)
-                std::cout << "#"; // Левая стена
+                std::cout << "#"; 
 
             if (i == y && j == x)
-                std::cout << "O"; // Голова змейки
+                std::cout << "O"; 
             else if (i == fruitY && j == fruitX)
-                std::cout << "F"; // Фрукт
+                std::cout << "F"; 
             else
             {
                 bool printTail = false;
@@ -49,7 +49,7 @@ void Draw()
                 {
                     if (tailX[k] == j && tailY[k] == i)
                     {
-                        std::cout << "o"; // Хвост змейки
+                        std::cout << "o"; 
                         printTail = true;
                     }
                 }
@@ -58,7 +58,7 @@ void Draw()
             }
 
             if (j == width - 1)
-                std::cout << "#"; // Правая стена
+                std::cout << "#"; 
         }
         std::cout << std::endl;
     }
@@ -153,7 +153,7 @@ int main()
         Draw();
         Input();
         Logic();
-        Sleep(100); // Задержка для управления скоростью игры
+        Sleep(100); 
     }
     return 0;
 }
