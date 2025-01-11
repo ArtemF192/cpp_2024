@@ -4,10 +4,11 @@ using namespace std;
 
 void main(void)
 {
-	system("chcp 1251");
+	
+	setlocale(LC_ALL, "Russian");
 
 	int number;
-	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†ÐµÐ»Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: ";
+	cout << "Ââåäèòå öåëîå ÷èñëî: ";
 	cin >> number;
 	int i, k;
 	int power(int, int);
