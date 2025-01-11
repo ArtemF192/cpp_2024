@@ -3,7 +3,7 @@
 using namespace std;
 void main(void)
 {
-	setlocale(LC_ALL, "Russian");
+	system("chcp 1251");
 
 	int number;
 	cout << "¬ведите целое число: ";
