@@ -24,14 +24,14 @@ void main(void)
     setlocale(LC_ALL, "Russian");
 
     int a = 2, b = 5;
-    cout << "Ð´Ð¾ Ð¾Ð±Ð¼ÐµÐ½Ð°: Ð° = " << a << " b = " << b << endl;
+    cout << "äî îáìåíà: à = " << a << " b = " << b << endl;
 
     obmen1(a, b);
-    cout << "Ð¿Ð¾ÑÐ»Ðµ Ð¾Ð±Ð¼ÐµÐ½Ð° 1: Ð° = " << a << " b = " << b << endl;
+    cout << "ïîñëå îáìåíà 1: à = " << a << " b = " << b << endl;
 
     obmen2(&a, &b);
-    cout << "Ð¿Ð¾ÑÐ»Ðµ Ð¾Ð±Ð¼ÐµÐ½Ð° 2: Ð° = " << a << " b = " << b << endl;
+    cout << "ïîñëå îáìåíà 2: à = " << a << " b = " << b << endl;
 
     obmen3(a, b);
-    cout << "Ð¿Ð¾ÑÐ»Ðµ Ð¾Ð±Ð¼ÐµÐ½Ð° 3: Ð° = " << a << " b = " << b << endl;
+    cout << "ïîñëå îáìåíà 3: à = " << a << " b = " << b << endl;
 }
