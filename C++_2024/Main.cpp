@@ -1,12 +1,13 @@
 #include <iostream>
 #include <locale.h>
 using namespace std;
+
 void main(void)
 {
 	system("chcp 1251");
 
 	int number;
-	cout << "Ââåäèòå öåëîå ÷èñëî: ";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†ÐµÐ»Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: ";
 	cin >> number;
 	int i, k;
 	int power(int, int);
